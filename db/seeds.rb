@@ -6,6 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+require 'faker'
+
 class String
   def to_class
     self.split('::').inject(Object) do |mod, class_name|
