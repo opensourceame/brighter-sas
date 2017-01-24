@@ -1,0 +1,24 @@
+doctype html
+
+head
+  = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+  = javascript_include_tag 'application', 'data-turbolinks-track' => true
+
+  = csrf_meta_tags
+
+  meta name="viewport" content="width=device-width, initial-scale=1"
+
+body.nav-md
+  div.container.body
+
+    div = render "partials/sidenav"
+    /div = render "partials/topnav"
+
+    div#content.right_col
+
+      = yield
+
+
+/div = render "partials/footer"
+
+= javascript_include_tag 'footermanifest', 'data-turbolinks-track' => true
