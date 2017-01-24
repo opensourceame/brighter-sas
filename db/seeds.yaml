@@ -1,0 +1,24 @@
+Company:
+  -
+    id:                     1
+    name:                   Stivad
+  -
+    id:                     2
+    name:                   Brighter
+
+User:
+  -
+    id:                     1
+    company_id:             2
+    first_name:             Important
+    last_name:              Admin
+    email:                  admin@brighter.nl
+    password:               admin666
+    password_confirmation:  admin666
+
+  -
+    id:                     2
+    company_id:             2
+    email:                  david@brighter.nl
+    password:               admin666
+    password_confirmation:  admin666

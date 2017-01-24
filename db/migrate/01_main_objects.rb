@@ -1,7 +1,8 @@
-class InitialSetup < ActiveRecord::Migration
+class MainObjects < ActiveRecord::Migration
 
-  def change
-    create_table(:users) do |t|
+  def self.up
+
+    create_table :users do |t|
 
       ## Database authenticatable
       t.string   :email,              null: false, default: ''
@@ -9,6 +10,9 @@ class InitialSetup < ActiveRecord::Migration
 
       t.string   :first_name,         null: false, default: ''
       t.string   :last_name,          null: false, default: ''
+      t.string   :tussenvoegsel
+
+      t.string   :position                                          # e.g. manager
 
       t.integer  :company_id,         null: false
 
@@ -44,34 +48,34 @@ class InitialSetup < ActiveRecord::Migration
 
     add_index :users, :email,                unique: true
     add_index :users, :reset_password_token, unique: true
-    # add_index :users, :confirmation_token,   unique: true
-    # add_index :users, :unlock_token,         unique: true
 
-
-    create_table(:companies) do |t|
-      # t.integer :id,                  primary: true
-      t.string  :name
+    create_table :companies do |t|
+      t.datetime  :created_at
+      t.datetime  :updated_at
+      t.string    :name
+      t.integer   :reporting_party_type
     end
 
-    create_table(:addresses) do |t|
-      # t.integer :id,                  primary: true
+    create_table :addresses do |t|
       t.string  :name,                default: 'main'
       t.integer :company_id
       t.string  :line_1
       t.string  :line_2
       t.string  :postal_code
       t.string  :city
-      t.string  :country
+      t.string  :country_code
     end
 
-    create_table :versions do |t|
-      t.string   :item_type, null: false
-      t.integer  :item_id,   null: false
-      t.string   :event,     null: false
-      t.string   :whodunnit
-      t.text     :object
+    create_table :plans do |t|
+      t.string   :name
+      t.string   :description
+    end
 
-      t.datetime :created_at
+    create_table :subscriptions do |t|
+      t.integer  :company_id
+      t.integer  :plan_id
+      t.date     :start_date
+      t.date     :end_date
     end
 
     add_index :versions, [:item_type, :item_id]
